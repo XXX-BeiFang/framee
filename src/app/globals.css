@@ -1,0 +1,335 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.safe-padding-top {
+  top: env(safe-area-inset-top); /* 将背景向下推到安全区域之下 */
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+  }
+}
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  /* 解决 iOS Safari 底部导航栏遮挡内容的问题 */
+  padding-bottom: constant(safe-area-inset-bottom); /* For iOS < 11.2 */
+  padding-bottom: env(safe-area-inset-bottom); /* For iOS 11.2+ and other modern browsers */
+  /* 添加顶部安全区域内边距，解决状态栏遮挡问题 */
+  padding-top: constant(safe-area-inset-top); /* For iOS < 11.2 */
+  padding-top: env(safe-area-inset-top); /* For iOS 11.2+ and other modern browsers */
+}
+
+/* ============================================================
+   影院级沉浸背景：极深黑曜石渐变 + 微妙的深蓝/暗紫径向环境光
+   替换原先冰冷的淡蓝灰「教务系统」配色
+   ============================================================ */
+.light-theme-background,
+.app-ambient-background {
+  top: env(safe-area-inset-top);
+  background-color: #0a0b10;
+  background-image:
+    radial-gradient(
+      ellipse 90% 60% at 15% -10%,
+      rgba(59, 74, 168, 0.16),
+      transparent 62%
+    ),
+    radial-gradient(
+      ellipse 70% 55% at 88% 6%,
+      rgba(120, 60, 160, 0.13),
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 60% 50% at 50% 100%,
+      rgba(245, 197, 24, 0.05),
+      transparent 65%
+    ),
+    linear-gradient(180deg, #0f1017 0%, #0a0b10 42%, #0a0b10 100%);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* ============================================================
+   现代玻璃拟态（Glassmorphism）基础材质
+   半透明黑 + 背景模糊 + 极细白色描边
+   ============================================================ */
+.glass {
+  background-color: rgba(22, 24, 34, 0.65);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-strong {
+  background-color: rgba(16, 18, 26, 0.85);
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-subtle {
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* 渐变文字高亮：白 → 半透白 */
+.text-gradient {
+  background-image: linear-gradient(
+    to right,
+    #ffffff 0%,
+    #ffffff 40%,
+    rgba(255, 255, 255, 0.7) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 金色渐变文字（品牌强调） */
+.text-gradient-gold {
+  background-image: linear-gradient(135deg, #fbe071 0%, #f5c518 55%, #d9ac0f 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* iOS 安全区内边距（适配刘海屏 / 底部 Home Indicator） */
+.pt-safe {
+  padding-top: env(safe-area-inset-top);
+}
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.mb-safe {
+  margin-bottom: env(safe-area-inset-bottom);
+}
+
+html:not(.dark) body {
+  /* Background handled by .app-ambient-background; theme is dark-first */
+}
+
+/* 自定义滚动条样式 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(31, 41, 55, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(75, 85, 99, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(107, 114, 128, 0.5);
+}
+
+/* 视频卡片悬停效果 */
+.video-card-hover {
+  transition: transform 0.3s ease;
+}
+
+.video-card-hover:hover {
+  transform: scale(1.05);
+}
+
+/* 渐变遮罩 */
+.gradient-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+}
+
+/* 隐藏移动端（<768px）垂直滚动条 */
+@media (max-width: 767px) {
+  html,
+  body {
+    -ms-overflow-style: none; /* IE & Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    display: none; /* Chrome Safari */
+  }
+}
+
+/* 隐藏所有滚动条（兼容 WebKit、Firefox、IE/Edge） */
+* {
+  -ms-overflow-style: none; /* IE & Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* View Transitions API 动画 */
+@keyframes slide-from-top {
+  from {
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  }
+  to {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
+@keyframes slide-from-bottom {
+  from {
+    clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+  }
+  to {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.8s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  animation-fill-mode: both;
+}
+
+/*
+  切换时，旧的视图不应该有动画，它应该在下面，等待被新的视图覆盖。
+  这可以防止在动画完成前，页面底部提前变色。
+*/
+::view-transition-old(root) {
+  animation: none;
+}
+
+/* 从浅色到深色：新内容（深色）从顶部滑入 */
+html.dark::view-transition-new(root) {
+  animation-name: slide-from-top;
+}
+
+/* 从深色到浅色：新内容（浅色）从底部滑入 */
+html:not(.dark)::view-transition-new(root) {
+  animation-name: slide-from-bottom;
+}
+
+/* 强制播放器内部的 video 元素高度为 100%，并保持内容完整显示 */
+div[data-media-provider] video {
+  height: 100%;
+  object-fit: contain;
+}
+
+.art-poster {
+  background-size: contain !important; /* 使图片完整展示 */
+  background-position: center center !important; /* 居中显示 */
+  background-repeat: no-repeat !important; /* 防止重复 */
+  background-color: #000 !important; /* 其余区域填充为黑色 */
+}
+
+/* 隐藏移动端竖屏时的 pip 按钮 */
+@media (max-width: 768px) {
+  .art-control-pip {
+    display: none !important;
+  }
+
+  .art-control-fullscreenWeb {
+    display: none !important;
+  }
+
+  .art-control-volume {
+    display: none !important;
+  }
+}
+
+/* Custom animations for fade-in-down and fade-out */
+@keyframes fade-in-down {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.animate-fade-in-down {
+  animation: fade-in-down 0.3s ease-out forwards;
+}
+
+.animate-fade-out {
+  animation: fade-out 0.5s ease-out forwards;
+}
+
+/* Custom class for speed test SweetAlert2 dialog background */
+.swal2-speed-test-white-bg {
+  @apply w-full max-w-md transform overflow-hidden rounded-2xl p-6 text-left align-middle shadow-xl transition-all backdrop-blur-xl;
+  background-color: #FFFFFF !important;
+}
+
+/* For dark mode, if applicable, ensure the background is still white */
+html.dark .swal2-speed-test-white-bg {
+  background-color: #FFFFFF !important;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.animate-slideUp {
+  animation: slideUp 0.6s ease-out forwards;
+  animation-delay: 0.2s; /* Delay for a staggered effect */
+}
+
+.art-video-player:not(.is-web-fullscreen):not(:fullscreen) {
+  border-bottom-left-radius: 0.75rem !important;
+  border-bottom-right-radius: 0.75rem !important;
+}

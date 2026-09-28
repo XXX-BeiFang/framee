@@ -1,0 +1,30 @@
+{
+  "name": "Framee",
+  "short_name": "Framee",
+  "description": "影视聚合",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "apple-mobile-web-app-capable": "yes",
+  "icons": [
+    {
+      "src": "/assets/logo/logo-light-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/logo/logo-light-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/logo/logo-mark-favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

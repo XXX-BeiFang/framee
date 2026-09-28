@@ -1,0 +1,54 @@
+# ============================================================
+# Framee — Git 忽略规则
+# ============================================================
+
+# ---- 依赖 ----
+node_modules/
+.pnpm-store/
+
+# ---- Next.js 构建产物 ----
+.next/
+out/
+build/
+dist/
+
+# ---- TypeScript 增量构建缓存 ----
+*.tsbuildinfo
+
+# ---- PWA 构建产物（由 next-pwa 在构建时生成，不要提交）----
+public/sw.js
+public/workbox-*.js
+
+# ---- 环境变量（切勿提交，含密码与 Token）----
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ---- 日志 ----
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ---- 测试覆盖率 ----
+coverage/
+
+# ---- Vercel ----
+.vercel/
+
+# ---- AI 助手本地数据（含项目记忆与本地备份，不应推送到远程仓库）----
+.workbuddy/
+.workbuddy-ai/
+
+# ---- 编辑器与系统文件 ----
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini
